@@ -2,6 +2,8 @@ import { useState } from "react";
 import MobileMenu from "../MobileMenu";
 import Brand from "../Brand";
 import { OpenNavBtn } from "../NavToggleBtn";
+import GithubIcon from "../../assets/github.svg";
+import ThemeDropdown from "../ThemeDropdown";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
@@ -32,10 +34,11 @@ export default function Header() {
 					mobileMenuOpen={mobileMenuOpen}
 					setMobileMenuOpen={setMobileMenuOpen}
 				/>
-				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-					<a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-						Log in
+				<div className="hidden lg:flex gap-4 lg:flex-1 lg:justify-end items-center">
+					<a href="#">
+						<img className="w-8" src={GithubIcon} alt="visit github" />
 					</a>
+					<ThemeDropdown />
 				</div>
 			</nav>
 		</header>
