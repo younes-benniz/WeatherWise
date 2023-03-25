@@ -11,7 +11,7 @@ function App() {
 			location={location}
 			routes={[
 				{ path: "/", element: <Hero /> },
-				{ path: "/weather", element: <WeatherPage /> },
+				{ path: "/weather/:city", element: <WeatherPage /> },
 			]}>
 			<div className="app">
 				<Header />
