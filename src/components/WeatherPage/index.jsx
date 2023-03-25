@@ -1,6 +1,10 @@
 import SearchBar from "../SearchBar";
 import WeatherIcon from "../../assets/weather.svg";
+import { useMatch } from "@tanstack/react-location";
 const WeatherPage = () => {
+	const {
+		params: { city },
+	} = useMatch();
 	return (
 		<>
 			<div className="w-full">
@@ -9,7 +13,7 @@ const WeatherPage = () => {
 			<div className="flex w-full justify-center pl-40 pr-20 mt-14 gap-10">
 				<div className="flex flex-col gap-6 justify-center w-1/3">
 					<p>25/03/2023 23:00</p>
-					<h3>Agadir, Morocco</h3>
+					<h3>{city}</h3>
 					<div className="flex gap-5">
 						<span className="text-7xl">15</span>
 						<img className="w-20" src={WeatherIcon} alt="weather" />
