@@ -1,10 +1,39 @@
+import { useState, useEffect } from "react";
 import SearchBar from "../SearchBar";
 import WeatherIcon from "../../assets/weather.svg";
 import { useMatch } from "@tanstack/react-location";
 const WeatherPage = () => {
+	const [date, setDate] = useState(new Date());
 	const {
 		params: { city },
 	} = useMatch();
+	const {
+		data: { weatherData },
+	} = useMatch();
+	console.log(weatherData.data);
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			tick();
+		}, 10000);
+		return function cleanup() {
+			clearInterval(timer);
+		};
+	});
+
+	const tick = () => {
+		setDate(new Date());
+	};
+
+	const options = {
+		year: "numeric",
+		month: "numeric",
+		day: "numeric",
+		hour: "numeric",
+		minute: "numeric",
+		hour12: false,
+	};
+
 	return (
 		<>
 			<div className="w-full">
@@ -12,10 +41,12 @@ const WeatherPage = () => {
 			</div>
 			<div className="flex w-full justify-center pl-40 pr-20 mt-14 gap-10">
 				<div className="flex flex-col gap-6 justify-center w-1/3">
-					<p>25/03/2023 23:00</p>
-					<h3>{city}</h3>
+					<p>{date.toLocaleString([], options)}</p>
+					<h3>{city.Capitalilze}</h3>
 					<div className="flex gap-5">
-						<span className="text-7xl">15</span>
+						<span className="text-7xl">
+							{weatherData.data.current_weather.temperature}
+						</span>
 						<img className="w-20" src={WeatherIcon} alt="weather" />
 					</div>
 

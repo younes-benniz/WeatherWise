@@ -18,7 +18,10 @@ const SearchBar = () => {
 	};
 
 	const handleSelect = (itemObject) => {
-		navigate({ to: `/weather/${itemObject.value}`, replace: true });
+		navigate({
+			to: `/weather/${itemObject.value}?latitude=${itemObject.latitude}&longitude=${itemObject.longitude}`,
+			replace: true,
+		});
 	};
 
 	return (
