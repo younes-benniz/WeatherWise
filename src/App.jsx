@@ -16,9 +16,13 @@ function App() {
 					path: "/weather/:city",
 					element: <WeatherPage />,
 					loader: async ({ search: { longitude, latitude } }) => ({
-						weatherData: await axios.get(
-							`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=auto`,
-						),
+						weatherData: await axios
+							.get(
+								`${
+									import.meta.env.VITE_WEATHER_API
+								}?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,windspeed_10m_max,windgusts_10m_max&current_weather=true&forecast_days=1&timezone=auto`,
+							)
+							.then((res) => res.data),
 					}),
 				},
 			]}>

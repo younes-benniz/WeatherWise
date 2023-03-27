@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SearchBar from "../SearchBar";
 import WeatherIcon from "../../assets/weather.svg";
 import { useMatch } from "@tanstack/react-location";
+import { WeatherDescription } from "../../data/weatherCodes";
 const WeatherPage = () => {
 	const [date, setDate] = useState(new Date());
 	const {
@@ -10,7 +11,6 @@ const WeatherPage = () => {
 	const {
 		data: { weatherData },
 	} = useMatch();
-	console.log(weatherData.data);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -33,6 +33,7 @@ const WeatherPage = () => {
 		minute: "numeric",
 		hour12: false,
 	};
+	const { current_weather, daily } = weatherData;
 
 	return (
 		<>
@@ -42,32 +43,26 @@ const WeatherPage = () => {
 			<div className="flex w-full justify-center pl-40 pr-20 mt-14 gap-10">
 				<div className="flex flex-col gap-6 justify-center w-1/3">
 					<p>{date.toLocaleString([], options)}</p>
-					<h3>{city.Capitalilze}</h3>
+					<h3 className="capitalize">{city}</h3>
 					<div className="flex gap-5">
-						<span className="text-7xl">
-							{weatherData.data.current_weather.temperature}
-						</span>
+						<span className="text-7xl">{Math.round(current_weather.temperature)}°</span>
 						<img className="w-20" src={WeatherIcon} alt="weather" />
 					</div>
 
-					<p className="">clear</p>
+					<p className="capitalize">
+						{WeatherDescription[current_weather.weathercode || ""]}
+					</p>
 				</div>
-				<div className="grid grid-cols-3 items-center w-1/2">
-					<div className="">
-						<p>Wind: 15 km/h</p>
-					</div>
-					<div className="">
-						<p>High/Low: 20/14</p>
-					</div>
-					<div className="">
-						<p>Humidity: 15</p>
-					</div>
-					<div className="">
-						<p>Sundrise: 06:00</p>
-					</div>
-					<div>
-						<p>Sunset: 19:00</p>
-					</div>
+				<div className="">
+					<ul className="flex flex-col">
+						<li>High: {Math.round(daily.temperature_2m_max)}</li>
+						<li>Low: {Math.round(daily.temperature_2m_min)}</li>
+						<li>Sunrise: {daily.sunrise}</li>
+						<li>Sunset: {daily.sunset}</li>
+						<li>UV Index: {daily.uv_index_max}</li>
+						<li>Max Wind Speed: {daily.windspeed_10m_max}</li>
+						<li>Max Wind Gusts: {daily.windgusts_10m_max}</li>
+					</ul>
 				</div>
 			</div>
 		</>
