@@ -6,10 +6,8 @@ import GithubIcon from "../../assets/github-gray.svg";
 import ThemeDropdown from "../ThemeDropdown";
 import TwitterIcon from "../../assets/twitter.svg";
 
-function classNames(...classes) {
-	return classes.filter(Boolean).join(" ");
-}
 const NavMenu = ["Home", "Forecast", "Charts"];
+
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

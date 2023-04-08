@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SearchBar from "../SearchBar";
+import Search from "../Search";
 import WeatherIcon from "../../assets/weather.svg";
 import { useMatch } from "@tanstack/react-location";
 import { WeatherDescription } from "../../data/weatherCodes";
@@ -37,8 +37,8 @@ const WeatherPage = () => {
 
 	return (
 		<>
-			<div className="w-full">
-				<SearchBar />
+			<div className="flex justify-center">
+				<Search />
 			</div>
 			<div className="flex w-full justify-center pl-40 pr-20 mt-14 gap-10">
 				<div className="flex flex-col gap-6 justify-center w-1/3">
