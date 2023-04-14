@@ -14,12 +14,12 @@ const MobileMenu = ({ NavMenu, mobileMenuOpen, setMobileMenuOpen }) => {
 				<div className="mt-6 flow-root">
 					<div className="-my-6 divide-y divide-gray-500/10">
 						<div className="space-y-2 py-6">
-							{NavMenu.map((item) => (
+							{NavMenu.map((item, index) => (
 								<a
-									key={item.toLowerCase()}
-									href="#"
+									key={index}
+									href={item.link}
 									className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-									{item}
+									{item.name}
 								</a>
 							))}
 						</div>

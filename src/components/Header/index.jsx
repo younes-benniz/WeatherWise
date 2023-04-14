@@ -6,7 +6,11 @@ import GithubIcon from "../../assets/github-gray.svg";
 import ThemeDropdown from "../ThemeDropdown";
 import TwitterIcon from "../../assets/twitter.svg";
 
-const NavMenu = ["Home", "Forecast", "Charts"];
+const NavMenu = [
+	{ name: "home", link: "/" },
+	{ name: "forecast", link: "/forecast" },
+	{ name: "charts", link: "/charts" },
+];
 
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,12 +23,12 @@ export default function Header() {
 				<Brand />
 				<OpenNavBtn onClick={() => setMobileMenuOpen(true)} />
 				<div className="hidden lg:flex lg:gap-x-12 md:flex md:gap-x-10">
-					{NavMenu.map((item) => (
+					{NavMenu.map((item, index) => (
 						<a
-							key={item.toLowerCase()}
-							href="#"
-							className="text-md font-semibold leading-6 text-white hover:text-red-400">
-							{item}
+							key={index}
+							href={item.link}
+							className="text-md capitalize font-semibold leading-6 text-white hover:text-red-400">
+							{item.name}
 						</a>
 					))}
 				</div>
