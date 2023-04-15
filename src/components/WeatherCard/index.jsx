@@ -23,7 +23,7 @@ const WeatherCard = ({ daily, currentWeather }) => {
 		{ name: "High", value: Math.round(currentWeather.temperature), icon: FaTemperatureHigh },
 		{ name: "Low", value: Math.round(daily.temperature_2m_min), icon: FaTemperatureLow },
 		{ name: "Wind", value: currentWeather.windspeed, icon: WiStrongWind },
-		{ name: "Humidity", icon: WiHumidity },
+		{ name: "Humidity", value: 15, icon: WiHumidity },
 		{
 			name: "UV Index",
 			value: daily.uv_index_max,
@@ -33,6 +33,24 @@ const WeatherCard = ({ daily, currentWeather }) => {
 		{ name: "Sunset", value: sunsetTime, icon: WiSunset },
 	];
 
+	const currentWeaterIcon = (weatherDescription, hour, sunrise, sunset) => {
+		let arr = ["rain", "fog", "drizzle", "snow", "thunderstorm"];
+		let splited = weatherDescription.split(" ");
+		let isDay = hour > sunrise && hour < sunset;
+
+		for (let word of splited) {
+			if (arr.includes(word)) {
+				return <img className="mr-10" src={`/weathericons/${word}.svg`} />;
+			}
+		}
+		return (
+			<img
+				className="mr-10"
+				src={`/weathericons/${splited.join("-")}-${isDay ? "day" : "night"}.svg`}
+			/>
+		);
+	};
+
 	return (
 		<>
 			<h1 className="text-4xl mb-4">Current Weather</h1>
@@ -40,12 +58,12 @@ const WeatherCard = ({ daily, currentWeather }) => {
 				<div className="mr-16">
 					<div className="flex gap-6 mb-10">
 						<div className="flex gap-2">
-							<MdOutlineLocationOn className="text-4xl" />
-							<h2 className="self-end text-xl">Current</h2>
+							<MdOutlineLocationOn className="text-3xl" />
+							<h2 className="self-end text-xl text-white">Current</h2>
 						</div>
 						<div className="flex gap-2">
-							<MdAccessTime className="text-4xl" />
-							<span className="self-end text-xl font-semibold">{`${currentHour
+							<MdAccessTime className="text-3xl" />
+							<span className="self-end text-xl font-semibold text-white">{`${currentHour
 								.toString()
 								.padStart(2, "0")}:00`}</span>
 						</div>
@@ -55,7 +73,12 @@ const WeatherCard = ({ daily, currentWeather }) => {
 							{WeatherDescription[currentWeather.weathercode]}
 						</p>
 						<div className="flex gap-5 items-center mt-4">
-							<img src={WeatherIcon} className="w-20 mb-5 mr-10" />
+							{currentWeaterIcon(
+								WeatherDescription[currentWeather.weathercode],
+								currentHour,
+								getHours(sunriseParsed),
+								getHours(sunsetParsed),
+							)}
 							<h1 className="text-8xl">
 								{Math.round(currentWeather.temperature)}
 								<span className="text-base align-top">&#8451;</span>
@@ -68,7 +91,7 @@ const WeatherCard = ({ daily, currentWeather }) => {
 					<ul className="flex flex-col text-lg text-white">
 						{weatherInfo.map((item, index) => (
 							<li key={index} className="flex items-center gap-3 py-2">
-								<item.icon className="text-3xl" />
+								<item.icon className="text-3xl text-slate-400" />
 								<span>{`${item.name}: ${item.value}`}</span>
 							</li>
 						))}

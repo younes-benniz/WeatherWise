@@ -26,7 +26,7 @@ const WeatherPage = () => {
 				<div className="w-3/5">
 					<WeatherCard daily={daily} currentWeather={current_weather} />
 				</div>
-				<div className="">
+				<div className="text-4xl mb-4">
 					<h1>Hourly forecast</h1>
 				</div>
 			</div>
