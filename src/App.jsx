@@ -21,6 +21,7 @@ function App() {
 								params: {
 									latitude: latitude,
 									longitude: longitude,
+									hourly: ["temperature_2m", "weathercode"],
 									daily: [
 										"weathercode",
 										"temperature_2m_max",
