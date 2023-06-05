@@ -1,6 +1,10 @@
 import { parseISO, getHours, getMinutes } from "date-fns";
 import { WeatherDescription } from "../data/weatherCodes";
 
+export const isDay = (currentHour, sunrise, sunset) => {
+	return currentHour > sunrise && currentHour < sunset;
+};
+
 export const getHour = (isoDate) => {
 	let isoDateParsed = parseISO(isoDate);
 	let hour = getHours(isoDateParsed);
@@ -14,16 +18,16 @@ export const getHourMinutes = (isoDate) => {
 	return `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 };
 
-export const weatherIcon = (weatherCode, hour, sunrise, sunset) => {
+export const weatherIcon = (weatherCode, isday) => {
 	let arr = ["rain", "fog", "drizzle", "snow", "thunderstorm"];
 	let splited = WeatherDescription[weatherCode].split(" ");
-	let isDay = hour > sunrise && hour < sunset;
 
 	for (let item of splited) {
 		if (arr.includes(item)) {
 			return item;
 		}
 	}
+	console.log(isday);
 
-	return `${splited.join("-")}-${isDay ? "day" : "night"}`;
+	return `${splited.join("-")}-${isday ? "day" : "night"}`;
 };
