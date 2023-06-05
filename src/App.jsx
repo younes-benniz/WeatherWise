@@ -11,9 +11,9 @@ function App() {
 		<Router
 			location={location}
 			routes={[
-				{ path: "/", element: <Hero /> },
+				{ path: "/WeatherWise/", element: <Hero /> },
 				{
-					path: "/weather/:city",
+					path: "/WeatherWise/weather/:city",
 					element: <WeatherPage />,
 					loader: async ({ search: { longitude, latitude } }) => ({
 						weatherData: await axios

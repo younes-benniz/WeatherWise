@@ -6,7 +6,10 @@ const ForecastCard = ({ hour, temperature, iconName, description }) => {
 			<h2 className="text-xl font-semibold badge badge-primary rounded-lg p-3">{hour}</h2>
 			<div className="flex gap-4">
 				<div className="flex flex-col gap-4">
-					<img className="w-20 text-center" src={`/weathericons/${iconName}.svg`} />
+					<img
+						className="w-20 text-center"
+						src={`/WeatherWise/weathericons/${iconName}.svg`}
+					/>
 				</div>
 				<p className="mb-2 text-5xl font-semibold text-center">
 					{temperature}

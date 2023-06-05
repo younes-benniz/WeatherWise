@@ -23,7 +23,7 @@ const Hero = () => {
 
 	const handleLocationDetect = () => {
 		navigate({
-			to: `/weather/current?latitude=${location.latitude}&longitude=${location.longitude}`,
+			to: `/WeatherWise/weather/current?latitude=${location.latitude}&longitude=${location.longitude}`,
 			replace: true,
 		});
 	};

@@ -60,7 +60,7 @@ const WeatherCard = ({ daily, currentWeather, location }) => {
 						{WeatherDescription[currentWeather.weathercode]}
 					</p>
 					<div className="flex gap-5 items-center mt-4">
-						<img className="mr-10" src={`/weathericons/${iconName}.svg`} />
+						<img className="mr-10" src={`/WeatherWise/weathericons/${iconName}.svg`} />
 						<h1 className="text-8xl">
 							{Math.round(currentWeather.temperature)}
 							<span className="text-base align-top">&#8451;</span>

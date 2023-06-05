@@ -42,7 +42,7 @@ export default function Search() {
 	};
 	const handleSelect = (city) => {
 		navigate({
-			to: `/weather/${city.name}?latitude=${city.latitude}&longitude=${city.longitude}`,
+			to: `/WeatherWise/weather/${city.name}?latitude=${city.latitude}&longitude=${city.longitude}`,
 			replace: true,
 		});
 	};
