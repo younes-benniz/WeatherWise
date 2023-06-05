@@ -10,10 +10,10 @@ const ThemeSwap = () => {
 			(!("theme" in localStorage) &&
 				window.matchMedia("(prefers-color-scheme: dark)").matches)
 		) {
-			document.documentElement.classList.add("dark");
+			document.documentElement.setAttribute("data-theme", "night");
 			setIsDark(true);
 		} else {
-			document.documentElement.classList.remove("dark");
+			document.documentElement.setAttribute("data-theme", "corporate");
 			setIsDark(false);
 		}
 	}, [isDark]);
