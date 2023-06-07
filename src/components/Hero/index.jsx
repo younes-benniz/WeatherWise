@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-location";
 import Search from "../Search";
+
 const Hero = () => {
 	const navigate = useNavigate();
-	const [location, setLocation] = useState({});
 
-	useEffect(() => {
+	const handleLocationDetect = () => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
-					setLocation({
-						latitude: position.coords.latitude,
-						longitude: position.coords.longitude,
+					navigate({
+						to: `/WeatherWise/weather/current?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`,
+						replace: true,
 					});
 				},
 				(error) => console.log(error),
@@ -19,12 +18,10 @@ const Hero = () => {
 		} else {
 			console.log("Geolocation is not supported by this browser.");
 		}
-	}, []);
-
-	const handleLocationDetect = () => {
-		navigate({
-			to: `/WeatherWise/weather/current?latitude=${location.latitude}&longitude=${location.longitude}`,
-			replace: true,
+		navigator.permissions.query({ name: "geolocation" }).then((result) => {
+			if (result.state === "denied") {
+				alert("Please allow permission for location");
+			}
 		});
 	};
 	return (
