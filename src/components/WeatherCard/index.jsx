@@ -3,7 +3,7 @@ import { WiStrongWind, WiHumidity, WiSunrise, WiSunset } from "react-icons/wi";
 import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
 import { MdOutlineLocationOn, MdAccessTime } from "react-icons/md";
 import { WeatherDescription } from "../../data/weatherCodes";
-import { parseISO, getHours, getMinutes } from "date-fns";
+import { parseISO, getHours } from "date-fns";
 import axios from "axios";
 import { getHour, getHourMinutes, weatherIcon, isDay } from "../../utils/getHour";
 

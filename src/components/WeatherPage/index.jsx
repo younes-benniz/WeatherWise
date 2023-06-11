@@ -3,23 +3,18 @@ import { useMatch } from "@tanstack/react-location";
 import { WeatherDescription } from "../../data/weatherCodes";
 import WeatherCard from "../WeatherCard";
 import ForecastCard from "../ForecastCard";
-import { getHour, getHourMinutes, weatherIcon } from "../../utils/getHour";
-import { parseISO, getHours, getMinutes } from "date-fns";
+import { getHour, weatherIcon } from "../../utils/getHour";
+import { parseISO, getHours } from "date-fns";
 
 const WeatherPage = () => {
 	const {
 		params: { city },
 	} = useMatch();
 	const {
-		search: { longitude, latitude },
-	} = useMatch();
-	const {
 		data: { weatherData },
 	} = useMatch();
 
 	const { current_weather, daily, hourly } = weatherData;
-	// Time array + temperature array + weathercode array
-	console.log(hourly.time);
 
 	return (
 		<div className="container mx-auto">

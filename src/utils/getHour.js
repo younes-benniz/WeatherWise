@@ -27,7 +27,5 @@ export const weatherIcon = (weatherCode, isday) => {
 			return item;
 		}
 	}
-	console.log(isday);
-
 	return `${splited.join("-")}-${isday ? "day" : "night"}`;
 };

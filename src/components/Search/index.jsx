@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "@tanstack/react-location";
 import { Combobox, Transition } from "@headlessui/react";
-import { MdExpandMore } from "react-icons/md";
 import axios from "axios";
 
 export default function Search() {
