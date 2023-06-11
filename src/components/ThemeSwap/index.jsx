@@ -28,8 +28,8 @@ const ThemeSwap = () => {
 				}}
 				checked={isDark}
 			/>
-			<HiOutlineSun className="swap-off w-10 h-10" />
-			<HiOutlineMoon className="swap-on w-10 h-10" />
+			<HiOutlineSun className="swap-off md:w-10 w-8 h-10" />
+			<HiOutlineMoon className="swap-on md:w-10 w-8 h-10" />
 		</label>
 	);
 };
