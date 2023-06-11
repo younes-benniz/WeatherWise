@@ -21,13 +21,13 @@ const WeatherPage = () => {
 			<div className="w-full flex justify-center mb-8">
 				<Search />
 			</div>
-			<div className="w-full flex gap-6">
-				<div className="w-3/5">
-					<h1 className="text-4xl mb-4">Current Weather</h1>
+			<div className="w-full flex md:flex-row flex-col gap-6 p-4 md:p-0">
+				<div className="md:w-3/5 w-full">
+					<h1 className="md:text-4xl text-2xl mb-4">Current Weather</h1>
 					<WeatherCard daily={daily} currentWeather={current_weather} location={city} />
 				</div>
-				<div className="w-2/5">
-					<h1 className="text-4xl mb-4">Hourly forecast</h1>
+				<div className="md:w-2/5 w-full">
+					<h1 className="md:text-4xl text-2xl mb-4">Hourly forecast</h1>
 					<div className="flex flex-col gap-3 h-96 overflow-y-scroll">
 						{hourly.time.map((value, index) => (
 							<ForecastCard
