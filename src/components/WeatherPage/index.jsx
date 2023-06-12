@@ -5,7 +5,6 @@ import WeatherCard from "../WeatherCard";
 import ForecastCard from "../ForecastCard";
 import { getHour, weatherIcon } from "../../utils/getHour";
 import { parseISO, getHours } from "date-fns";
-import { compareAsc } from "date-fns";
 
 const WeatherPage = () => {
 	const {
@@ -16,6 +15,16 @@ const WeatherPage = () => {
 	} = useMatch();
 
 	const { current_weather, daily, hourly } = weatherData;
+
+	const compareDates = (a, b) => {
+		if (a > current_weather.time) {
+			return -1;
+		} else if (b < current_weather.time) {
+			return 1;
+		} else {
+			return a - b;
+		}
+	};
 
 	return (
 		<div className="container mx-auto">
@@ -30,22 +39,26 @@ const WeatherPage = () => {
 				<div className="md:w-2/5 w-full">
 					<h1 className="md:text-4xl text-2xl mb-4">Hourly forecast</h1>
 					<div className="flex flex-col gap-3 h-96 overflow-y-scroll">
-						{hourly.time
-							.filter((value) => value > current_weather.time)
-							.map((value, index) => (
-								<ForecastCard
-									key={index}
-									hour={getHour(value)}
-									temperature={Math.floor(hourly.temperature_2m[index])}
-									description={WeatherDescription[hourly.weathercode[index]]}
-									iconName={weatherIcon(
-										hourly.weathercode[index],
-										getHours(parseISO(value)),
-										getHours(parseISO(daily.sunrise[0])),
-										getHours(parseISO(daily.sunset[0])),
-									)}
-								/>
-							))}
+						{hourly.time.sort(compareDates).map((value, index) => (
+							<ForecastCard
+								key={index}
+								hour={getHour(value)}
+								temperature={Math.floor(
+									hourly.temperature_2m[getHours(parseISO(value))],
+								)}
+								description={
+									WeatherDescription[
+										hourly.weathercode[getHours(parseISO(value))]
+									]
+								}
+								iconName={weatherIcon(
+									hourly.weathercode[getHours(parseISO(value))],
+									getHours(parseISO(value)),
+									getHours(parseISO(daily.sunrise[0])),
+									getHours(parseISO(daily.sunset[0])),
+								)}
+							/>
+						))}
 					</div>
 				</div>
 			</div>
