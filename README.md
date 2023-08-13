@@ -19,7 +19,7 @@ WeatherWise is a simple web application that allows users to get live weather up
 To install dependencies and run the application locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/younes-benniz/WeatherWise`
-2. Navigate to the project directory: `cd random-quote-generator`
+2. Navigate to the project directory: `cd weatherWise`
 3. run `npm install` or `yarn add`
 4. run `npm run dev` or `yarn dev`
 
